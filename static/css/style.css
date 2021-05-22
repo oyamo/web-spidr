@@ -1,0 +1,39 @@
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.w3-container {
+    height: 100%;
+    align-content: center;
+    text-align: center;
+}
+
+
+.image-banner {
+    height: calc(100% - 200px);
+    height: -moz-calc(100% - 200px);
+    height: -webkit-calc(100% - 200px);
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.w3-button {
+    transform: scale(1.5);
+    margin-top: 30px;
+    border-radius: 8px;
+    background: black;
+    color: aliceblue;
+}
+
+footer {
+    height: 100px;
+    padding: 20px;
+    background: rgb(2,0,36);
+    color: aliceblue;
+    text-align: center;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(77,27,69,0.9962185557816877) 29%, rgba(6,48,56,1) 67%);
+}

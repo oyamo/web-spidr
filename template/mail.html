@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Here you go</title>
+</head>
+<body>
+
+    <h1>Changed Pages </h1>
+    <table class="w3-table w3-striped w3-border">
+        <thead>
+            <tr class="w3-red">
+                <th>No.</th>
+                <th>Page Title</th>
+                <th>Url</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{range $index ,$Page := .}}
+                <tr>
+                    <td>{{$index}}</td>
+                    <td>{{$Page.Title}}</td>
+                    <td>{{$Page.Url}}</td>
+                </tr>
+            {{end}}
+        </tbody>
+    </table>
+    <h2>Attached Below</h2>
+</body>
+</html>
