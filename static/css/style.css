@@ -16,7 +16,7 @@ html, body {
     height: calc(100% - 200px);
     height: -moz-calc(100% - 200px);
     height: -webkit-calc(100% - 200px);
-    width: auto;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
