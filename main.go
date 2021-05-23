@@ -2,12 +2,12 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"github.com/oyamoh-brian/spidr/downloader"
 	"go.mongodb.org/mongo-driver/mongo"
 	"log"
 	"os"
+	"strings"
 )
 
 var downloaderConfig downloader.Config
@@ -31,11 +31,16 @@ func main() {
 
 
 func InitRoutes()  {
+
 	app.Use(func(c *fiber.Ctx) error {
 		scheme := c.Protocol()
-		fmt.Printf("%v", scheme)
+		if scheme == "http" {
+			url := strings.ReplaceAll(c.BaseURL(), "http://", "https://")
+			return c.Redirect(url)
+		}
 		return c.Next()
 	})
+
 	app.Get("/", HomePage)
 	app.Get("/download", Fetch)
 	app.Get("/success", Success)
