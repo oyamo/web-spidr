@@ -91,7 +91,7 @@ func (d *Downloader) Download() ( *scan, error) {
 	var jobs = make(chan *string, counter)
 	var results = make(chan *rawResponse, counter)
 
-	for i := 0; i < 50; i++ {
+	for i := 0; i < 200; i++ {
 		go download(i, jobs, results)
 	}
 
@@ -120,6 +120,7 @@ func (d *Downloader) Download() ( *scan, error) {
 		docsFrmDB:    &changeLogValues,
 		filter:       &filterByUrl,
 	}
+
 	for i := 0; i < counter; i++ {
 		var page = *<-results
 		if page.err == nil {
