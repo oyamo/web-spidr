@@ -6,6 +6,7 @@ import (
 	"github.com/oyamoh-brian/spidr/downloader"
 	"go.mongodb.org/mongo-driver/mongo"
 	"log"
+	"os"
 )
 
 var downloaderConfig downloader.Config
@@ -20,7 +21,8 @@ func main() {
 	InitRoutes()
 
 	defer client.Disconnect(context.Background())
-	log.Fatal(app.Listen(":3000"))
+	port := os.Getenv("PORT")
+	log.Fatal(app.Listen(":" + port))
 }
 
 
