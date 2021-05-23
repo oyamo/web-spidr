@@ -1,1 +1,1 @@
-web: ./spidr tmp.txt
+web: ./bin/spidr tmp.txt
