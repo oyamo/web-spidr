@@ -52,8 +52,6 @@ func zipFolder(path string, fileName string) {
 		_, _ = io.Copy(writer, file)
 
 		file.Close()
-		defer os.Remove(filePath)
 	}
 
-	defer os.Remove(path)
 }
