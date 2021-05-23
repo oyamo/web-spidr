@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"github.com/oyamoh-brian/spidr/downloader"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -30,6 +31,11 @@ func main() {
 
 
 func InitRoutes()  {
+	app.Use(func(c *fiber.Ctx) error {
+		scheme := c.Protocol()
+		fmt.Printf("%v", scheme)
+		return c.Next()
+	})
 	app.Get("/", HomePage)
 	app.Get("/download", Fetch)
 	app.Get("/success", Success)
