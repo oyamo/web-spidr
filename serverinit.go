@@ -36,7 +36,7 @@ func  Init()  {
 	var args = os.Args[1:]
 	client, err := mongo.NewClient(options.Client().ApplyURI(os.Getenv("MONGO_URI")))
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 
 	ctx  := context.Background()

@@ -152,35 +152,37 @@ func (d *Downloader) Download() ( *scan, error) {
 
 	wg.Wait()
 
-	zipFolder("./" + folder , folder+".zip")
+	if 0 != len(*gscan.changedPages) {
+		zipFolder("./" + folder , folder+".zip")
 
 
-	var writer bytes.Buffer
-	tmpl,err:= template.ParseFiles("./template/mail.html")
-	if err != nil {
-		panic(err)
+		var writer bytes.Buffer
+		tmpl,err:= template.ParseFiles("./template/mail.html")
+		if err != nil {
+			panic(err)
+		}
+
+		err = tmpl.Execute(&writer, *gscan.changedPages)
+		if err != nil {
+			panic(err)
+		}
+
+		mail := NewMail(MailConf{
+			FromEmail:  smtpEmail,
+			FromName:   senderName,
+			ToEmail:    toEmail,
+			Subject:    fmt.Sprintf("Here you go! %d Changes", len(*gscan.changedPages)),
+			Message:    writer.String(),
+			Attachment: "." + string(os.PathSeparator) + folder+".zip",
+			Password:  	gmailAppPassword,
+			SmtpHost:   smtpHost,
+			SmtpPort:   smtpPort,
+			AdminEmail: smtpEmail,
+		})
+
+
+		mail.SendMail()
 	}
-
-	err = tmpl.Execute(&writer, *gscan.changedPages)
-	if err != nil {
-		panic(err)
-	}
-
-	mail := NewMail(MailConf{
-		FromEmail:  smtpEmail,
-		FromName:   senderName,
-		ToEmail:    toEmail,
-		Subject:    fmt.Sprintf("Here you go! %d Changes", len(*gscan.changedPages)),
-		Message:    writer.String(),
-		Attachment: "." + string(os.PathSeparator) + folder+".zip",
-		Password:  	gmailAppPassword,
-		SmtpHost:   smtpHost,
-		SmtpPort:   smtpPort,
-		AdminEmail: smtpEmail,
-	})
-
-
-	mail.SendMail()
 
 	return &gscan, nil
 

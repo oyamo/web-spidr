@@ -33,8 +33,7 @@ func main() {
 func InitRoutes()  {
 
 	app.Use(func(c *fiber.Ctx) error {
-		scheme := c.Protocol()
-		if scheme == "http" {
+		if scheme := c.Protocol(); scheme == "http" {
 			url := strings.ReplaceAll(c.BaseURL(), "http://", "https://")
 			return c.Redirect(url)
 		}
