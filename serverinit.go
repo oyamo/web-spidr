@@ -31,6 +31,7 @@ func  Init()  {
 		panic(err)
 	}
 	app.Static("/static", "./static")
+	app.Static("/", "./static/meta")
 
 	// Downloader Settings
 	var args = os.Args[1:]

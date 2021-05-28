@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c636de0e-2612-4403-bb93-ee2cc6ed9ec0" name="Default Changelist" comment="" />
+    <list default="true" id="c636de0e-2612-4403-bb93-ee2cc6ed9ec0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/static/meta/about.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/meta/android-chrome-192x192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/meta/android-chrome-512x512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/meta/apple-touch-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/meta/favicon-16x16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/meta/favicon-32x32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/meta/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/meta/site.webmanifest" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template/success.html" beforeDir="false" afterPath="$PROJECT_DIR$/template/success.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,12 +52,13 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/meta" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="coverage" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/meta" />
       <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/template" />
     </key>
@@ -95,6 +108,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
