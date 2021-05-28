@@ -23,7 +23,7 @@ const (
 	smtpPort         =  587
 	smtpEmail        =  "oyamo.xyz@gmail.com"
 	senderName 		=  "Spidr Systems"
-	toEmail			=   "oyamobrian8@gmail.com"
+	toEmail			=   "rkemwamu@yahoo.com"
 )
 
 type Config struct {
