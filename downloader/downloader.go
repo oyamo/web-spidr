@@ -18,12 +18,12 @@ const (
 )
 
 const (
-	gmailAppPassword = "olex yemn jlbl lkhk"
-	smtpHost         = "smtp.gmail.com"
-	smtpPort         =  587
-	smtpEmail        =  "oyamo.xyz@gmail.com"
-	senderName 		=  "Spidr Systems"
-	toEmail			=   "rkemwamu@yahoo.com"
+	gmailAppPassword = ""
+	smtpHost         = ""
+	smtpPort         = 587
+	smtpEmail        = ""
+	senderName       = "Spidr Systems"
+	toEmail          = ""
 )
 
 type Config struct {
@@ -37,8 +37,6 @@ type Downloader struct {
 	client   http.Client
 }
 
-
-
 type scan struct {
 	wg           *sync.WaitGroup
 	db           *mongo.Database
@@ -48,7 +46,7 @@ type scan struct {
 	counter      *int
 	changedPages *[]Response
 	docsFrmDB    *[]Response
-	filter       *[] bson.M
+	filter       *[]bson.M
 }
 
 func New(config Config) *Downloader {
@@ -66,7 +64,7 @@ type dFUnctions interface {
 	Download()
 }
 
-func (d *Downloader) Download() ( *scan, error) {
+func (d *Downloader) Download() (*scan, error) {
 
 	var wg sync.WaitGroup
 
@@ -130,11 +128,10 @@ func (d *Downloader) Download() ( *scan, error) {
 		}
 	}
 
-
 	wg.Wait()
 
-	vChangedMap := make(map[string] *Response)
-	vfrmNetMap := make(map[string] *rawResponse)
+	vChangedMap := make(map[string]*Response)
+	vfrmNetMap := make(map[string]*rawResponse)
 
 	for i := 0; i < len(*gscan.changedPages); i++ {
 		vChangedMap[(*gscan.changedPages)[i].Url] = &(*gscan.changedPages)[i]
@@ -145,7 +142,7 @@ func (d *Downloader) Download() ( *scan, error) {
 	}
 
 	for _, response := range *gscan.docsFrmNet {
-		if _, found := vChangedMap[*response.url]; found{
+		if _, found := vChangedMap[*response.url]; found {
 			wg.Add(1)
 			go dumpHtml(&wg, response)
 		}
@@ -154,11 +151,10 @@ func (d *Downloader) Download() ( *scan, error) {
 	wg.Wait()
 
 	if 0 != len(*gscan.changedPages) {
-		zipFolder("./" + folder , folder+".zip")
-
+		zipFolder("./"+folder, folder+".zip")
 
 		var writer bytes.Buffer
-		tmpl,err:= template.ParseFiles("./template/mail.html")
+		tmpl, err := template.ParseFiles("./template/mail.html")
 		if err != nil {
 			panic(err)
 		}
@@ -174,13 +170,12 @@ func (d *Downloader) Download() ( *scan, error) {
 			ToEmail:    toEmail,
 			Subject:    fmt.Sprintf("Here you go! %d Changes", len(*gscan.changedPages)),
 			Message:    writer.String(),
-			Attachment: "." + string(os.PathSeparator) + folder+".zip",
-			Password:  	gmailAppPassword,
+			Attachment: "." + string(os.PathSeparator) + folder + ".zip",
+			Password:   gmailAppPassword,
 			SmtpHost:   smtpHost,
 			SmtpPort:   smtpPort,
 			AdminEmail: smtpEmail,
 		})
-
 
 		mail.SendMail()
 	}
@@ -188,6 +183,3 @@ func (d *Downloader) Download() ( *scan, error) {
 	return &gscan, nil
 
 }
-
-
-
